@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "npm run standardize && ng serve",
-    "build": "npm run standardize && ng build --prod",
+    "build": "npm run standardize && ng build --prod --build-optimizer",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
