@@ -285,21 +285,33 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
   !*** ./src/$$_lazy_route_resource lazy namespace object ***!
   \**********************************************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-function webpackEmptyAsyncContext(req) {
-	// Here Promise.resolve().then() is used instead of new Promise() to prevent
-	// uncaught exception popping up in devtools
-	return Promise.resolve().then(function() {
-		var e = new Error('Cannot find module "' + req + '".');
-		e.code = 'MODULE_NOT_FOUND';
-		throw e;
+var map = {
+	"./contacts/contacts.module": [
+		"./src/app/contacts/contacts.module.ts",
+		"contacts-contacts-module"
+	]
+};
+function webpackAsyncContext(req) {
+	var ids = map[req];
+	if(!ids) {
+		return Promise.resolve().then(function() {
+			var e = new Error('Cannot find module "' + req + '".');
+			e.code = 'MODULE_NOT_FOUND';
+			throw e;
+		});
+	}
+	return __webpack_require__.e(ids[1]).then(function() {
+		var module = __webpack_require__(ids[0]);
+		return module;
 	});
 }
-webpackEmptyAsyncContext.keys = function() { return []; };
-webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
-module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = "./src/$$_lazy_route_resource lazy recursive";
+webpackAsyncContext.keys = function webpackAsyncContextKeys() {
+	return Object.keys(map);
+};
+webpackAsyncContext.id = "./src/$$_lazy_route_resource lazy recursive";
+module.exports = webpackAsyncContext;
 
 /***/ }),
 
@@ -330,6 +342,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: 'home', component: _home_home_component__WEBPACK_IMPORTED_MODULE_2__["HomeComponent"] },
+    { path: 'contacts', loadChildren: './contacts/contacts.module#ContactsModule' },
     { path: '**', component: _page_not_found_page_not_found_component__WEBPACK_IMPORTED_MODULE_3__["PageNotFoundComponent"] },
 ];
 var AppRoutingModule = /** @class */ (function () {
@@ -355,7 +368,7 @@ var AppRoutingModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<section>\n  <mdb-navbar SideClass=\"navbar fixed-top navbar-expand-lg navbar-dark teal scrolling-navbar ie-nav\" [containerInside]=\"false\">\n    <mdb-navbar-brand>\n      <a class=\"logo navbar-brand\" href=\"#\">\n        <strong>Jarvis DevOps</strong>\n      </a>\n    </mdb-navbar-brand>\n    <links>\n      <ul class=\"navbar-nav mr-auto\">\n        <li class=\"nav-item active waves-light\" mdbWavesEffect>\n          <a routerLink=\"/home\" class=\"nav-link\">Home\n            <span class=\"sr-only\">(current)</span>\n          </a>\n        </li>\n        <li class=\"nav-item waves-light\" mdbWavesEffect>\n          <a class=\"nav-link\">Features</a>\n        </li>\n        <li class=\"nav-item waves-light\" mdbWavesEffect>\n          <a class=\"nav-link\">Demo</a>\n        </li>\n        <li class=\"nav-item waves-light\" mdbWavesEffect>\n          <a class=\"nav-link\">Contacts</a>\n        </li>\n      </ul>\n      <ul class=\"navbar-nav nav-flex-icons\">\n        <li class=\"nav-item waves-light\" mdbWavesEffect>\n          <a class=\"nav-link\">\n            <i class=\"fa fa-facebook\"></i>\n          </a>\n        </li>\n        <li class=\"nav-item waves-light\" mdbWavesEffect>\n          <a class=\"nav-link\">\n            <i class=\"fa fa-twitter\"></i>\n          </a>\n        </li>\n        <li class=\"nav-item waves-light\" mdbWavesEffect>\n          <a class=\"nav-link\">\n            <i class=\"fa fa-instagram\"></i>\n          </a>\n        </li>\n      </ul>\n    </links>\n  </mdb-navbar>\n\n</section>\n\n<router-outlet></router-outlet>\n\n<section>\n  <!--Footer-->\n<footer class=\"page-footer teal pt-4\">\n\n  <!--Footer Links-->\n  <div class=\"container-fluid text-center text-md-left\">\n      <div class=\"row\">\n\n          <!--First column-->\n          <div class=\"col-md-6\">\n              <h5 class=\"title\">Footer Content</h5>\n              <p>Here you can use rows and columns here to organize your footer content.</p>\n          </div>\n          <!--/.First column-->\n\n          <!--Second column-->\n          <div class=\"col-md-6\">\n              <h5 class=\"title\">Links</h5>\n              <ul class=\"list-unstyled\">\n                  <li><a routerLink=\"/home\">Home</a></li>\n                  <li><a href=\"#\">Features</a></li>\n                  <li><a href=\"#\">Demo</a></li>\n                  <li><a href=\"#\">Contacts</a></li>\n              </ul>\n          </div>\n          <!--/.Second column-->\n      </div>\n  </div>\n  <!--/.Footer Links-->\n\n  <!--Copyright-->\n  <div class=\"footer-copyright text-center py-3\">\n      <div class=\"container-fluid\">\n          © 2018 Copyright: <a href=\"https://www.jarvisdevops.com\"> JarvisDevOps.com </a>\n      </div>\n  </div>\n  <!--/.Copyright-->\n</footer>\n<!--/.Footer-->\n</section>"
+module.exports = "<section>\n  <mdb-navbar SideClass=\"navbar fixed-top navbar-expand-lg navbar-dark teal scrolling-navbar ie-nav\" [containerInside]=\"false\">\n    <mdb-navbar-brand>\n      <a class=\"logo navbar-brand\" href=\"#\">\n        <strong>Jarvis DevOps</strong>\n      </a>\n    </mdb-navbar-brand>\n    <links>\n      <ul class=\"navbar-nav mr-auto\">\n        <li class=\"nav-item active waves-light\" mdbWavesEffect>\n          <a routerLink=\"/home\" class=\"nav-link\">Home\n            <span class=\"sr-only\">(current)</span>\n          </a>\n        </li>\n        <li class=\"nav-item waves-light\" mdbWavesEffect>\n          <a class=\"nav-link\">Features</a>\n        </li>\n        <li class=\"nav-item waves-light\" mdbWavesEffect>\n          <a class=\"nav-link\">Demo</a>\n        </li>\n        <li class=\"nav-item waves-light\" mdbWavesEffect>\n          <a routerLink=\"/contacts\" class=\"nav-link\">Contacts</a>\n        </li>\n      </ul>\n      <ul class=\"navbar-nav nav-flex-icons\">\n        <li class=\"nav-item waves-light\" mdbWavesEffect>\n          <a class=\"nav-link\">\n            <i class=\"fa fa-facebook\"></i>\n          </a>\n        </li>\n        <li class=\"nav-item waves-light\" mdbWavesEffect>\n          <a class=\"nav-link\">\n            <i class=\"fa fa-twitter\"></i>\n          </a>\n        </li>\n        <li class=\"nav-item waves-light\" mdbWavesEffect>\n          <a class=\"nav-link\">\n            <i class=\"fa fa-instagram\"></i>\n          </a>\n        </li>\n      </ul>\n    </links>\n  </mdb-navbar>\n\n</section>\n\n<router-outlet></router-outlet>\n\n<section>\n  <!--Footer-->\n<footer class=\"page-footer teal pt-4\">\n\n  <!--Footer Links-->\n  <div class=\"container-fluid text-center text-md-left\">\n      <div class=\"row\">\n\n          <!--First column-->\n          <div class=\"col-md-6\">\n              <h5 class=\"title\">Footer Content</h5>\n              <p>Here you can use rows and columns here to organize your footer content.</p>\n          </div>\n          <!--/.First column-->\n\n          <!--Second column-->\n          <div class=\"col-md-6\">\n              <h5 class=\"title\">Links</h5>\n              <ul class=\"list-unstyled\">\n                  <li><a routerLink=\"/home\">Home</a></li>\n                  <li><a href=\"#\">Features</a></li>\n                  <li><a href=\"#\">Demo</a></li>\n                  <li><a routerLink=\"/contacts\">Contacts</a></li>\n              </ul>\n          </div>\n          <!--/.Second column-->\n      </div>\n  </div>\n  <!--/.Footer Links-->\n\n  <!--Copyright-->\n  <div class=\"footer-copyright text-center py-3\">\n      <div class=\"container-fluid\">\n          © 2018 Copyright: <a href=\"http://localhost:8080\"> JarvisDevOps.com </a>\n      </div>\n  </div>\n  <!--/.Copyright-->\n</footer>\n<!--/.Footer-->\n</section>"
 
 /***/ }),
 
